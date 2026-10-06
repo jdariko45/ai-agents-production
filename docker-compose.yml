@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  agent:
+    build: .
+    container_name: ai-agent-1
+    restart: always
+    environment:
+      AGENT_NAME: production-agent-1
+      ROOM: technocore
+      TECHNOCORE_URL: https://technocore.chat
+      POLL_INTERVAL: 10
+    volumes:
+      - ./logs:/app/logs
+    networks:
+      - agent-network
+
+networks:
+  agent-network:
+    driver: bridge
